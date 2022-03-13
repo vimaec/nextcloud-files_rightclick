@@ -9,6 +9,7 @@
     var appName = RightClick.appName;
 
     new RightClick.Menu($('tbody[id=fileList]'), function (event, context, delimiter) {
+        debugger
         var options = new RightClick.Options();
         var currentFile = $(event.target).closest('tr');
         var selectedActions = '.selectedActions .menu-center li';
@@ -63,7 +64,7 @@
                 $(currentFile.find('input.selectCheckBox')).click();
             });
 
-            $.each($('.selectedActions .menu-center li'), function (i, selectedAction) {
+            $.each($(currentFile).closest('table').find('.selectedActions .menu-center li'), function (i, selectedAction) {
                 var action = $(selectedAction);
 
                 addNewOption(action.attr('class'), $(action.find('span.icon')).attr('class').replace('icon', '').replace(' ', '').replace('icon-', ''), $(action.find('span:not(.icon)')).text(), function () {
